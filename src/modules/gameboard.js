@@ -29,7 +29,6 @@ export default function gameboardFactory() {
                 board[x + i][y] = ship;
             }
         }
-        console.log(board)
     }
 
     const isShip = (coords) => {

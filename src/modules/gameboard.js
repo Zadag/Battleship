@@ -17,6 +17,8 @@ export default function gameboardFactory() {
     }
 
     const placeShip = (coords, length, allignment) => {
+        if (isShip(coords)) return 'error'
+        
         const ship = shipFactory(length);
         const [x, y] = coords;
         if (allignment === 'horizontal') {
@@ -38,6 +40,9 @@ export default function gameboardFactory() {
 
     const recieveAttack = (coords) => {
         const [x, y] = coords;
+        if (isShip(coords)) {
+            board[x][y].hit(coords);
+        }
         board[x][y].hit()
     }
 

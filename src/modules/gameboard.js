@@ -17,10 +17,11 @@ export default function gameboardFactory() {
     }
 
     const placeShip = (coords, length, allignment) => {
-        if (isShip(coords)) return 'error'
-        
-        const ship = shipFactory(length);
         const [x, y] = coords;
+        if (isShip(coords)) return 'error: occupied by ship'
+        if (allignment === 'horizontal' && board[x][y + length] === undefined) return 'error: out of bounds';
+        if (allignment === 'vertical' && board[x + length] === undefined) return 'error: out of bounds';
+        const ship = shipFactory(length);
         if (allignment === 'horizontal') {
             for (let i = 0; i < length; i++) {
                 board[x][y + i] = ship;

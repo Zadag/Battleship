@@ -43,6 +43,12 @@ it('Places ships in the correct vertical position', () => {
 
 })
 
+it('Does not place ships out of bounds', () => {
+    const board1 = gameboardFactory();
+    expect(board1.placeShip([0, 9], 2, 'horizontal')).toBe('error: out of bounds');
+    expect(board1.placeShip([9, 1], 2, 'vertical')).toBe('error: out of bounds');
+})
+
 it('All ship cells of the same ship reference the same ship object', () => {
     const board1 = gameboardFactory();
     board1.placeShip([0, 0], 3, 'horizontal');
@@ -57,3 +63,4 @@ it('Unique ship cells reference separate ship objects', () => {
     board1.placeShip([3, 3], 4, 'horizontal');
     expect(board1.getShip[3, 3] === board1.getShip([0, 0])).toBe(false);
 })
+

@@ -26,9 +26,10 @@ export default function gameboardFactory() {
         if (allignment === 'horizontal') {
             if (board[x][y + length] === undefined) return 'error: out of bounds';
             for (let i = 0; i < length; i++) {
-                if (isShip[x, y + i]) return 'error: occupied by ship'
+                if (board[x][y + i] !== 0) return 'error: occupied by ship' //This needs answers.  Why is isShip returning false here??
             }
             const ship = shipFactory(length);
+            console.log(isShip([x, y]));
             for (let i = 0; i < length; i++) {
                 board[x][y + i] = ship;
             }
@@ -37,7 +38,7 @@ export default function gameboardFactory() {
         if (allignment === 'vertical') {
             if (board[x + length] === undefined) return 'error: out of bounds';
             for (let i = 0; i < length; i++) {
-                if (isShip[x + i, y]) return 'error: occupied by ship'
+                if (board[x + i][y] !== 0) return 'error: occupied by ship'
             }
             const ship = shipFactory(length);
             for (let i = 0; i < length; i++) {

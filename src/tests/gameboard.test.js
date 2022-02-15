@@ -53,8 +53,6 @@ it('Does not place ships on occupied cells', () => {
     const board1 = gameboardFactory();
     board1.placeShip([0, 0], 4, 'horizontal');
     board1.placeShip([3, 3], 4, 'vertical');
-    console.log(board1.getBoard());
-    console.log(board1.isShip([0, 3]));
     expect(board1.placeShip([0, 3], 2, 'horizontal')).toBe('error: occupied by ship');
     expect(board1.placeShip([0, 3], 2, 'vertical')).toBe('error: occupied by ship');
     expect(board1.placeShip([4, 2], 2, 'horizontal')).toBe('error: occupied by ship');

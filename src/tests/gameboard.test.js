@@ -66,14 +66,22 @@ describe('Placing ships', () => {
         const board1 = gameboardFactory();
         board1.placeShip([0, 0], 3, 'horizontal');
         board1.placeShip([3, 3], 4, 'horizontal');
-        expect(board1.getShip([0, 0])).toBe(board1.getShip([0, 1]));
-        expect(board1.getShip[3, 3] === board1.getShip([0, 0])).toBe(false);
+        expect(board1.cellStatus([0, 0])).toBe(board1.cellStatus([0, 1]));
+        expect(board1.cellStatus[3, 3] === board1.cellStatus([0, 0])).toBe(false);
     })
     
     it('Unique ship cells reference separate ship objects', () => {
         const board1 = gameboardFactory();
         board1.placeShip([0, 0], 3, 'horizontal');
         board1.placeShip([3, 3], 4, 'horizontal');
-        expect(board1.getShip[3, 3] === board1.getShip([0, 0])).toBe(false);
+        expect(board1.cellStatus[3, 3] === board1.cellStatus([0, 0])).toBe(false);
     })        
+})
+
+describe('Recieving hits', () => {
+    it('Marks water spaces as 1', () => {
+        const board1 = gameboardFactory();
+        board1.recieveAttack([0, 0]);
+        expect(board1.cellStatus([0, 0])).toBe(1);
+    })
 })

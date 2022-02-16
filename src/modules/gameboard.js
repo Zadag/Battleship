@@ -9,7 +9,7 @@ export default function gameboardFactory() {
 
     const getBoard = () => board;
 
-    const getShip = (coords) => {
+    const cellStatus = (coords) => {
         const [x, y] = coords;
         return board[x][y];
     };
@@ -46,18 +46,21 @@ export default function gameboardFactory() {
         return 'Ship placed';
     };
 
-    // const recieveAttack = (coords) => {
-    //     const [x, y] = coords;
-    //     if (isShip(coords)) {
-    //         board[x][y].hit(coords);
-    //     }
-    //     board[x][y].hit()
-    // }
+    const recieveAttack = (coords) => {
+        const [x, y] = coords;
+        if (isShip(coords)) {
+            board[x][y].hit(coords);
+        }
+        if (!isShip(coords)) {
+            board[x][y] = 1;
+        }
+    }
 
     return {
         getBoard,
         placeShip,
         isShip,
-        getShip,
+        cellStatus,
+        recieveAttack,
     };
 }

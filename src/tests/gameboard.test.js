@@ -108,9 +108,13 @@ describe('Recieving hits', () => {
 })
 
 describe('Are all ships sunk?', () => {
-    board1.placeShip([0, 0], 2, 'horizontal');
-    expect(board1.allSunk()).toBe(false);
-    board1.recieveAttack([0, 0]);
-    board1.recieveAttack([0, 1]);
-    expect(board1.allSunk()).toBe(true);
+    it('Checks if all ships are sunk', () => {
+        const board1 = gameboardFactory();
+        board1.placeShip([0, 0], 2, 'horizontal');
+        console.log(board1.cellStatus([0, 0]));
+        expect(board1.allSunk()).toBe(false);
+        board1.recieveAttack([0, 0]);
+        board1.recieveAttack([0, 1]);
+        expect(board1.allSunk()).toBe(true);
+    })
 })

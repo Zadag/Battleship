@@ -19,6 +19,16 @@ export default function gameboardFactory() {
         return typeof board[x][y] === 'object';
     };
 
+    const allSunk = () => {
+        for (let i = 0; i < 10; i += 1) {
+            for (let j = 0; j < 10; j += 1) 
+            if (typeof board[i][j] === 'object') {
+                if (board[i][j].ship.isSunk() === false) return false;
+            }
+        }
+        return true;
+    }
+
     const placeShip = (coords, length, allignment) => {
         const [x, y] = coords;
         if (allignment === 'horizontal') {
@@ -71,5 +81,6 @@ export default function gameboardFactory() {
         isShip,
         cellStatus,
         recieveAttack,
+        allSunk,
     };
 }

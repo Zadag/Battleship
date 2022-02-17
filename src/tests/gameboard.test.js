@@ -106,3 +106,11 @@ describe('Recieving hits', () => {
         expect(board1.cellStatus([0, 0]).ship.isHit(1)).toBe(true);
     })
 })
+
+describe('Are all ships sunk?', () => {
+    board1.placeShip([0, 0], 2, 'horizontal');
+    expect(board1.allSunk()).toBe(false);
+    board1.recieveAttack([0, 0]);
+    board1.recieveAttack([0, 1]);
+    expect(board1.allSunk()).toBe(true);
+})

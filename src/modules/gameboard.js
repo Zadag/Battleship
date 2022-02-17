@@ -19,10 +19,6 @@ export default function gameboardFactory() {
         return typeof board[x][y] === 'object';
     };
 
-    const getOrigin = (ship) => {
-
-    }
-
     const placeShip = (coords, length, allignment) => {
         const [x, y] = coords;
         if (allignment === 'horizontal') {
@@ -58,7 +54,11 @@ export default function gameboardFactory() {
     const recieveAttack = (coords) => {
         const [x, y] = coords;
         if (isShip(coords)) {
-            board[x][y].hit(coords);
+            // get distance between the ship position hit and its origin then pass it to hit()
+            let origin = board[x][y].originCoords;
+            let diff = (x - origin[0]) + (y - origin[0])
+            if (diff < 0) diff = diff * -1;
+            board[x][y].ship.hit(diff);
         }
         if (!isShip(coords)) {
             board[x][y] = 1;

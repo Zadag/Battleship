@@ -66,7 +66,6 @@ describe('Placing ships', () => {
         const board1 = gameboardFactory();
         board1.placeShip([0, 0], 3, 'horizontal');
         board1.placeShip([3, 3], 4, 'horizontal');
-        console.log(board1.cellStatus([0, 0]).ship)
         expect(board1.cellStatus([0, 0]).ship).toBe(board1.cellStatus([0, 1]).ship);
         expect(board1.cellStatus([3, 3]).ship === board1.cellStatus([0, 0]).ship).toBe(false);
     })
@@ -84,5 +83,26 @@ describe('Recieving hits', () => {
         const board1 = gameboardFactory();
         board1.recieveAttack([0, 0]);
         expect(board1.cellStatus([0, 0])).toBe(1);
+    })
+
+    it('Marks correct horizontal ship position as hit', () => {
+        const board1 = gameboardFactory();
+        board1.placeShip([0, 0], 4, 'horizontal');
+        board1.recieveAttack([0, 0]);
+        expect(board1.cellStatus([0, 0]).ship.isHit(0)).toBe(true);
+        expect(board1.cellStatus([0, 0]).ship.isHit(1)).toBe(false);
+        board1.recieveAttack([0, 1]);
+        expect(board1.cellStatus([0, 0]).ship.isHit(1)).toBe(true);
+
+    })
+
+    it('Marks correct vertical ship position as hit', () => {
+        const board1 = gameboardFactory();
+        board1.placeShip([0, 0], 4, 'vertical');
+        board1.recieveAttack([0, 0]);
+        expect(board1.cellStatus([0, 0]).ship.isHit(0)).toBe(true);
+        expect(board1.cellStatus([0, 0]).ship.isHit(1)).toBe(false);
+        board1.recieveAttack([1, 0]);
+        expect(board1.cellStatus([0, 0]).ship.isHit(1)).toBe(true);
     })
 })

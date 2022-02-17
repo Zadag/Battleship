@@ -19,6 +19,10 @@ export default function gameboardFactory() {
         return typeof board[x][y] === 'object';
     };
 
+    const getOrigin = (ship) => {
+
+    }
+
     const placeShip = (coords, length, allignment) => {
         const [x, y] = coords;
         if (allignment === 'horizontal') {
@@ -28,10 +32,12 @@ export default function gameboardFactory() {
             }
             const ship = shipFactory(length);
             for (let i = 0; i < length; i += 1) {
-                board[x][y + i] = ship;
+                board[x][y + i] = {
+                    originCoords: [x, y],
+                    ship: ship,
+                }
             }
         }
-
         if (allignment === 'vertical') {
             if (board[x + length] === undefined) return 'error: out of bounds';
             for (let i = 0; i < length; i += 1) {
@@ -39,7 +45,10 @@ export default function gameboardFactory() {
             }
             const ship = shipFactory(length);
             for (let i = 0; i < length; i += 1) {
-                board[x + i][y] = ship;
+                board[x + i][y] = {
+                    originCoords: [x, y],
+                    ship: ship,
+                }
             }
         }
 

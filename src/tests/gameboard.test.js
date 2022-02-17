@@ -66,8 +66,9 @@ describe('Placing ships', () => {
         const board1 = gameboardFactory();
         board1.placeShip([0, 0], 3, 'horizontal');
         board1.placeShip([3, 3], 4, 'horizontal');
-        expect(board1.cellStatus([0, 0])).toBe(board1.cellStatus([0, 1]));
-        expect(board1.cellStatus[3, 3] === board1.cellStatus([0, 0])).toBe(false);
+        console.log(board1.cellStatus([0, 0]).ship)
+        expect(board1.cellStatus([0, 0]).ship).toBe(board1.cellStatus([0, 1]).ship);
+        expect(board1.cellStatus([3, 3]).ship === board1.cellStatus([0, 0]).ship).toBe(false);
     })
     
     it('Unique ship cells reference separate ship objects', () => {

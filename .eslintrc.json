@@ -13,5 +13,9 @@
     },
     "rules": {
         "indent": ["error", 4]
-    }
+    },
+    "plugins": [
+        "jest"
+    ]
+
 }

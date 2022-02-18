@@ -7,7 +7,7 @@ export default function gameboardFactory() {
         board.push(Array(10).fill(0));
     }
 
-    const getBoard = () => board;
+    const getBoard = () => [...board];
 
     const cellStatus = (coords) => {
         const [x, y] = coords;

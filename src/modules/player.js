@@ -1,9 +1,9 @@
 import gameboardFactory from './gameboard';
 
 export default function playerFactory(playerName, isTurn = false, isComputer = false) {
-    const sendAttack = (player, coords) => {
-        if (player.board.recieveAttack([coords]) === 'Cell is already hit') return 'Invalid move';
-        player.board.recieveAttack(coords);
+    const sendAttack = (playerObj, coords) => {
+        if (playerObj.board.recieveAttack([coords]) === 'Cell is already hit') return 'Invalid move';
+        playerObj.board.recieveAttack(coords);
         return 'Valid move';
     };
 

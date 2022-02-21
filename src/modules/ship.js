@@ -6,9 +6,6 @@ export default function shipFactory(length) {
 
     const isSunk = () => {
         let count = 0;
-        // for (const element of ship) {
-        //     if (element === 1) count += 1
-        // }
         ship.forEach((element) => {
             if (element === 1) count += 1;
         });

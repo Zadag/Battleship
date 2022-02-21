@@ -69,11 +69,20 @@ export default function gameboardFactory() {
             const origin = board[x][y].originCoords;
             let diff = (x - origin[0]) + (y - origin[0]);
             if (diff < 0) diff *= -1;
-            board[x][y].ship.hit(diff);
+            if (!cellStatus(coords).ship.isHit(diff)) {
+                board[x][y].ship.hit(diff);
+                return 'Cell marked as ship hit';
+            }
+            return 'Cell is already hit';
         }
         if (!isShip(coords)) {
-            board[x][y] = 1;
+            if (cellStatus(coords) !== 1) {
+                board[x][y] = 1;
+                return 'Cell marked as water hit';
+            }
+            return 'Cell is already hit';
         }
+        return 'Error';
     };
 
     return {

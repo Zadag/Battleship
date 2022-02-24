@@ -67,7 +67,7 @@ export default function gameboardFactory() {
         if (isShip(coords)) {
             // get distance between the ship position hit and its origin then pass it to hit()
             const origin = board[x][y].originCoords;
-            let diff = (x - origin[0]) + (y - origin[0]);
+            let diff = (x - origin[0]) + (y - origin[1]);
             if (diff < 0) diff *= -1;
             if (!cellStatus(coords).ship.isHit(diff)) {
                 board[x][y].ship.hit(diff);
@@ -85,6 +85,26 @@ export default function gameboardFactory() {
         return 'Error';
     };
 
+    const isCellHit = (coords) => {
+        const [x, y] = coords;
+        if (isShip(coords)) {
+            const origin = board[x][y].originCoords;
+            let diff = (x - origin[0]) + (y - origin[1]);
+            if (diff < 0) diff *= -1;
+            if (!cellStatus(coords).ship.isHit(diff)) {
+                return 'Cell is an unhit ship';
+            }
+            return 'Cell is a hit ship';
+        }
+        if (!isShip(coords)) {
+            if (cellStatus(coords) !== 1) {
+                return 'Cell is an unhit water';
+            }
+            return 'Cell is a hit water';
+        }
+        return 'Error';
+    };
+
     return {
         getBoard,
         placeShip,
@@ -92,5 +112,6 @@ export default function gameboardFactory() {
         cellStatus,
         recieveAttack,
         allSunk,
+        isCellHit,
     };
 }

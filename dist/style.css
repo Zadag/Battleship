@@ -52,4 +52,12 @@ table {
     grid-template-rows: repeat(10, 40px);
     grid-template-columns: repeat(10, 40px);
     background-color: black;
+    gap: 1px;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+.not-hit {
+    background-color: darkgrey;
 }

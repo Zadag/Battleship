@@ -7,3 +7,9 @@ it('Sends attacks to the correct board', () => {
     player1.sendAttack(player2, [0, 0]);
     expect(player1.sendAttack(player2, [0, 0])).toBe('Invalid move');
 });
+
+it('Changes player turn from true to false', () => {
+    const player1 = playerFactory('Bob', true, false);
+    player1.isTurn = false;
+    expect(player1.isTurn).toBe(false);
+});

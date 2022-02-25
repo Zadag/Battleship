@@ -10,7 +10,6 @@ export default function displayBoard(boardObj) {
 
     for (let i = 0; i < 10; i += 1) {
         for (let j = 0; j < 10; j += 1) {
-            console.log(boardObj);
             const boardCell = document.createElement('div');
             if (boardObj.isCellHit([i, j]) === 'Cell is an unhit ship' || boardObj.isCellHit([i, j]) === 'Cell is an unhit water') {
                 boardCell.classList.add('not-hit');
@@ -19,7 +18,7 @@ export default function displayBoard(boardObj) {
                 boardCell.classList.add('hit-water');
             }
             if (boardObj.isCellHit([i, j]) === 'Cell is a hit ship') {
-                boardCell.classList.add('hit-water');
+                boardCell.classList.add('hit-ship');
             }
             gameboard.appendChild(boardCell);
         }

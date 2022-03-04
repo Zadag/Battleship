@@ -20,9 +20,25 @@ export default function gameLoop() {
         }
     };
 
+    const attack = (player, coords) => {
+        if (player === 'player1') players[1].sendAttack(players[0], coords);
+        if (player === 'player2') players[0].sendAttack(players[1], coords);
+    };
+
+    const isWon = () => {
+        let winner;
+
+        if (players[0].board.allSunk()) winner = players[1].playerName;
+        if (players[1].board.allSunk()) winner = players[0].playerName;
+        if (winner) return winner;
+        return 'No winner';
+    };
+
     return {
         init,
         changeTurn,
+        attack,
+        isWon,
         players,
     };
 }

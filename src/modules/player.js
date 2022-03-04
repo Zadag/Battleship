@@ -8,7 +8,7 @@ export default function playerFactory(playerName, isTurn = false, isComputer = f
     };
 
     return {
-        player: playerName,
+        playerName,
         board: gameboardFactory(),
         isComputer,
         isTurn,

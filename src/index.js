@@ -1,12 +1,5 @@
-import displayBoard from './modules/displayboard';
-import playerFactory from './modules/player';
+import gameLoop from './modules/game';
 
-const player1 = playerFactory('player1', true, false);
-const player2 = playerFactory('player2', false, true);
+const game = gameLoop();
 
-player1.board.placeShip([0, 0], 4, 'horizontal');
-
-player2.sendAttack(player1, [0, 1]);
-player2.sendAttack(player1, [1, 0]);
-
-displayBoard(player1.board);
+game.init();

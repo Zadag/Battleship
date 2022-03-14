@@ -21,6 +21,13 @@ export default function displayBoard(boardObj) {
                 boardCell.classList.add('hit-ship');
             }
             gameboard.appendChild(boardCell);
+            boardCell.addEventListener('click', (e) => {
+                console.log('event added');
+                if (e.target.classList.contains('not-hit')) {
+                    boardObj.recieveAttack([i, j]);
+                    displayBoard(boardObj);
+                } else console.log('error');
+            });
         }
     }
 }

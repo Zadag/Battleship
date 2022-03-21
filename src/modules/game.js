@@ -22,25 +22,37 @@ export default function gameLoop() {
         playerBoard.addEventListener('click', (e) => {
             const { x, y } = e.target.dataset;
             console.log(x, y);
-            if (players[0].isTurn) {
+            if (players[0].isTurn && (players[0].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[0].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
                 players[0].board.recieveAttack([x, y]);
                 removeBoard(playerBoard);
                 removeBoard(cpuBoard);
                 displayBoard(players[0]);
                 displayBoard(players[1]);
+                if (players[0].board.allSunk()) {
+                    console.log(`${players[1].playerName} Won`);
+                    return;
+                }
                 addGameboardEvents();
+                players[0].isTurn = false;
+                players[1].isTurn = true;
             }
         });
 
         cpuBoard.addEventListener('click', (e) => {
             const { x, y } = e.target.dataset;
-            if (players[1].isTurn) {
+            if (players[1].isTurn && (players[1].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[1].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
                 players[1].board.recieveAttack([x, y]);
                 removeBoard(cpuBoard);
                 removeBoard(playerBoard);
                 displayBoard(players[0]);
                 displayBoard(players[1]);
+                if (players[1].board.allSunk()) {
+                    console.log(`${players[0].playerName} Won`);
+                    return;
+                }
                 addGameboardEvents();
+                players[0].isTurn = true;
+                players[1].isTurn = false;
             }
         });
     };

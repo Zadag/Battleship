@@ -2,6 +2,11 @@ export default function displayBoard(playerObj) {
     const root = document.querySelector('#root');
     const gameboardContainer = document.createElement('div');
     gameboardContainer.classList.add('gameboard-container');
+    if (playerObj.playerName === 'CPU') {
+        gameboardContainer.classList.add('CPU-gameboard');
+    } else {
+        gameboardContainer.classList.add('player-gameboard');
+    }
     const gameboard = document.createElement('div');
     gameboard.classList.add('gameboard');
 
@@ -23,13 +28,6 @@ export default function displayBoard(playerObj) {
             boardCell.dataset.x = i;
             boardCell.dataset.y = j;
             gameboard.appendChild(boardCell);
-            // boardCell.addEventListener('click', (e) => {
-            //     console.log('event added');
-            //     if (e.target.classList.contains('not-hit') && playerObj.isTurn) {
-            //         playerObj.board.recieveAttack([i, j]);
-            //         displayBoard(playerObj);
-            //     } else console.log('error');
-            // });
         }
     }
 }

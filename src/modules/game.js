@@ -1,5 +1,6 @@
 import playerFactory from './player';
 import displayBoard from './displayboard';
+import removeBoard from './removeBoard';
 
 export default function gameLoop() {
     const players = [];
@@ -14,6 +15,36 @@ export default function gameLoop() {
         }
     };
 
+    const addGameboardEvents = () => {
+        const playerBoard = document.querySelector('.player-gameboard');
+        const cpuBoard = document.querySelector('.CPU-gameboard');
+
+        playerBoard.addEventListener('click', (e) => {
+            const { x, y } = e.target.dataset;
+            console.log(x, y);
+            if (players[0].isTurn) {
+                players[0].board.recieveAttack([x, y]);
+                removeBoard(playerBoard);
+                removeBoard(cpuBoard);
+                displayBoard(players[0]);
+                displayBoard(players[1]);
+                addGameboardEvents();
+            }
+        });
+
+        cpuBoard.addEventListener('click', (e) => {
+            const { x, y } = e.target.dataset;
+            if (players[1].isTurn) {
+                players[1].board.recieveAttack([x, y]);
+                removeBoard(cpuBoard);
+                removeBoard(playerBoard);
+                displayBoard(players[0]);
+                displayBoard(players[1]);
+                addGameboardEvents();
+            }
+        });
+    };
+
     const init = (player1Name) => {
         const player1 = playerFactory(player1Name, true, false);
         const player2 = playerFactory('CPU', false, true);
@@ -24,17 +55,15 @@ export default function gameLoop() {
         player2.board.placeShip([3, 3], 3, 'vertical');
         player2.board.placeShip([5, 5], 2, 'horizontal');
         players.push(player1, player2);
-
-        // while(player1.board.allSunk === false && player2.board.allSunk === false) {
-
-        // }
         displayBoard(player1);
         displayBoard(player2);
+        addGameboardEvents();
     };
 
     return {
         init,
         players,
         changeTurns,
+        addGameboardEvents,
     };
 }

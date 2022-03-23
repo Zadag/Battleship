@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/game */ \"./src/modules/game.js\");\n\n\nconst game = (0,_modules_game__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\ngame.init();\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/game */ \"./src/modules/game.js\");\n/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/header */ \"./src/modules/header.js\");\n\n\n\n(0,_modules_header__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n\nconst game = (0,_modules_game__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n// game.init();\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ }),
 
@@ -50,6 +50,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/modules/header.js":
+/*!*******************************!*\
+  !*** ./src/modules/header.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ header)\n/* harmony export */ });\n/* harmony import */ var _assets_battleship_icon_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/battleship_icon.png */ \"./src/assets/battleship_icon.png\");\n\n\nfunction header() {\n    const headerDiv = document.getElementById('header');\n    const logo = new Image();\n    logo.src = _assets_battleship_icon_png__WEBPACK_IMPORTED_MODULE_0__;\n\n    headerDiv.appendChild(logo);\n}\n\n//# sourceURL=webpack://battleship/./src/modules/header.js?");
+
+/***/ }),
+
 /***/ "./src/modules/player.js":
 /*!*******************************!*\
   !*** ./src/modules/player.js ***!
@@ -77,6 +87,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ shipFactory)\n/* harmony export */ });\nfunction shipFactory(length) {\n    const ship = Array(length).fill(0);\n    const getLength = () => ship.length;\n\n    const isHit = (position) => ship[position] === 1;\n\n    const isSunk = () => {\n        let count = 0;\n        ship.forEach((element) => {\n            if (element === 1) count += 1;\n        });\n        return count === ship.length;\n    };\n\n    const hit = (position) => {\n        ship[position] = 1;\n    };\n\n    return {\n        getLength,\n        isSunk,\n        hit,\n        isHit,\n    };\n}\n\n\n//# sourceURL=webpack://battleship/./src/modules/ship.js?");
+
+/***/ }),
+
+/***/ "./src/assets/battleship_icon.png":
+/*!****************************************!*\
+  !*** ./src/assets/battleship_icon.png ***!
+  \****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"f088534212aea0a0a01d.png\";\n\n//# sourceURL=webpack://battleship/./src/assets/battleship_icon.png?");
 
 /***/ })
 
@@ -119,6 +139,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -133,6 +165,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/

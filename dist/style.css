@@ -47,6 +47,33 @@ table {
 	border-spacing: 0;
 }
 
+#header {
+    height: 12vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+}
+
+.header-logo {
+    max-height: 100%;
+    width: auto;
+    margin-left: 30px;
+}
+
+.header-title {
+    font-size: 8vh;
+    justify-self: center;
+}
+
 .gameboard {
     display: inline-grid;
     grid-template-rows: repeat(10, 40px);

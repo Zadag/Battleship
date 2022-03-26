@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/game */ \"./src/modules/game.js\");\n/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/header */ \"./src/modules/header.js\");\n\n\n\n(0,_modules_header__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n\nconst game = (0,_modules_game__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n// game.init();\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/game */ \"./src/modules/game.js\");\n/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/header */ \"./src/modules/header.js\");\n\n\n\n(0,_modules_header__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\nconst game = (0,_modules_game__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\ngame.init();\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ }),
 
@@ -56,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ header)\n/* harmony export */ });\n/* harmony import */ var _assets_battleship_icon_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/battleship_icon.png */ \"./src/assets/battleship_icon.png\");\n\n\nfunction header() {\n    const headerDiv = document.getElementById('header');\n    const logo = new Image();\n    logo.src = _assets_battleship_icon_png__WEBPACK_IMPORTED_MODULE_0__;\n\n    headerDiv.appendChild(logo);\n}\n\n//# sourceURL=webpack://battleship/./src/modules/header.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ header)\n/* harmony export */ });\n/* harmony import */ var _assets_battleship_icon_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/battleship_icon.png */ \"./src/assets/battleship_icon.png\");\n\n\nfunction header() {\n    const headerDiv = document.getElementById('header');\n    const headerContent = document.createElement('div');\n    headerContent.classList.add('header-content');\n\n    const logo = new Image();\n    logo.src = _assets_battleship_icon_png__WEBPACK_IMPORTED_MODULE_0__;\n    logo.classList.add('header-logo');\n\n    const headerTitle = document.createElement('h1');\n    headerTitle.textContent = 'Battleship';\n    headerTitle.classList.add('header-title');\n\n    headerDiv.appendChild(headerContent);\n    headerContent.appendChild(headerTitle);\n    headerContent.appendChild(logo);\n}\n\n\n//# sourceURL=webpack://battleship/./src/modules/header.js?");
 
 /***/ }),
 

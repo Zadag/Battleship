@@ -1,5 +1,5 @@
 export default function displayBoard(playerObj) {
-    const root = document.querySelector('#root');
+    const content = document.querySelector('#content');
     const gameboardContainer = document.createElement('div');
     gameboardContainer.classList.add('gameboard-container');
     if (playerObj.playerName === 'CPU') {
@@ -10,7 +10,7 @@ export default function displayBoard(playerObj) {
     const gameboard = document.createElement('div');
     gameboard.classList.add('gameboard');
 
-    root.appendChild(gameboardContainer);
+    content.appendChild(gameboardContainer);
     gameboardContainer.appendChild(gameboard);
 
     for (let i = 0; i < 10; i += 1) {

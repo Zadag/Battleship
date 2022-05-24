@@ -21,7 +21,6 @@ export default function gameLoop() {
 
         playerBoard.addEventListener('click', (e) => {
             const { x, y } = e.target.dataset;
-            console.log(x, y);
             if (players[0].isTurn && (players[0].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[0].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
                 players[0].board.recieveAttack([x, y]);
                 removeBoard(playerBoard);

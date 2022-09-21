@@ -53,6 +53,7 @@ table {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background-color: tan;
 }
 
 .header-content {
@@ -95,4 +96,119 @@ table {
 
 .hit-ship {
     background-color: darkred;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+}
+
+#start-container {
+    height: 88vh;
+    width: 60vw;
+    background-color: gray;
+    display: flex;
+    overflow: auto;
+}
+
+#board-grid {
+  display: grid;
+  height: 40vw;
+  width: 40vw;
+  border: solid;
+  margin-top: 20px;
+  grid-template-columns: repeat(8, 1fr)
+}
+
+.dragging {
+    opacity: 50%;
+}
+
+#ships-container {
+  height: 80%;
+  width: 35%;
+  margin-left: 10px;
+  margin-top: 20px;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#ship-buttons {
+    margin-top: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#ship-header {
+    margin-top: 10%;
+    font-size: 2rem;
+}
+
+#ships-bay-horizontal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#ships-bay-vertical {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.grid-square {
+    border: solid;
+    border-width: 1px;
+}
+
+.four-long {
+    display: flex;
+    border: solid;
+    border-width: 1px;
+    background-color: red;
+    cursor: move;
+}
+
+.three-long {
+    display: flex;
+    border: solid;
+    border-width: 1px;
+    background-color: green;
+    cursor: move;
+}
+
+.two-long {
+    display: flex;
+    border: solid;
+    border-width: 1px;
+    background-color: blue;
+    cursor: move;
+}
+
+.ship-square {
+    height: calc(((50vw * 0.6) / 8) - 2px);
+    width: calc(((50vw * 0.6) / 8) - 2px);
+    border: solid;
+    border-width: 1px;
+}
+
+.ship {
+    margin-top: 10%
+}
+
+#reset-ships-button {
+    margin-top: 15%;
+}
+
+#rotate-ships-button {
+    margin-top: 15%;
+}
+
+.vertical {
+    flex-direction: column;
+    margin-left: 15px;
 }

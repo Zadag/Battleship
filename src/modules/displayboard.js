@@ -6,7 +6,7 @@ export default function displayBoard(playerObj) {
         gameboardContainer.classList.add('CPU-gameboard');
     } else {
         gameboardContainer.classList.add('player-gameboard');
-    }
+    } 
     const gameboard = document.createElement('div');
     gameboard.classList.add('gameboard');
 

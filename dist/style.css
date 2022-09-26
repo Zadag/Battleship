@@ -173,6 +173,14 @@ table {
     cursor: move;
 }
 
+.four-long-2 {
+    display: flex;
+    border: solid;
+    border-width: 1px;
+    background-color: red;
+    cursor: move;
+}
+
 .three-long {
     display: flex;
     border: solid;

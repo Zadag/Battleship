@@ -69,7 +69,7 @@ export default function dragAndDrop() {
                 }
                 if (currentDrag.shipId === 'four-long') {
                     if (rootY + outOfBoundsX < 9 && rootY + outOfBoundsY >= 0) {
-                        if ((!rootEl.classList.contains('three-long') && !rootElPlusOne.classList.contains('three-long') && !rootElPlusTwo.classList.contains('three-long') && !rootElPlusThree.classList.contains('three-long')) && (!rootEl.classList.contains('two-long') && !rootElPlusOne.classList.contains('two-long') && !rootElPlusTwo.classList.contains('two-long') && !rootElPlusThree.classList.contains('two-long'))) {
+                        if ((rootEl.classList.length === 1 || rootEl.classList.contains('four-long')) && (rootElPlusOne.classList.length === 1 || rootElPlusOne.classList.contains('four-long')) && (rootElPlusTwo.classList.length === 1 || rootElPlusTwo.classList.contains('four-long')) && (rootElPlusThree.classList.length === 1 || rootElPlusThree.classList.contains('four-long'))) {
                             const targets = document.querySelectorAll('.grid-square.four-long')
                             if (targets) {
                                 targets.forEach(target => target.classList.remove('four-long'))
@@ -81,9 +81,23 @@ export default function dragAndDrop() {
                         }
                     }
                 }
+                if (currentDrag.shipId === 'four-long-2') {
+                    if (rootY + outOfBoundsX < 9 && rootY + outOfBoundsY >= 0) {
+                        if ((rootEl.classList.length === 1 || rootEl.classList.contains('four-long-2')) && (rootElPlusOne.classList.length === 1 || rootElPlusOne.classList.contains('four-long-2')) && (rootElPlusTwo.classList.length === 1 || rootElPlusTwo.classList.contains('four-long-2')) && (rootElPlusThree.classList.length === 1 || rootElPlusThree.classList.contains('four-long-2'))) {
+                            const targets = document.querySelectorAll('.grid-square.four-long-2')
+                            if (targets) {
+                                targets.forEach(target => target.classList.remove('four-long-2'))
+                            }
+                            rootEl.classList.add('four-long-2');
+                            rootElPlusOne.classList.add('four-long-2');
+                            rootElPlusTwo.classList.add('four-long-2');
+                            rootElPlusThree.classList.add('four-long-2');
+                        }
+                    }
+                }
                 if (currentDrag.shipId === 'three-long') {
                     if (rootY + outOfBoundsX - 1 < 9 && rootY + outOfBoundsY >= 0) {
-                        if ((!rootEl.classList.contains('four-long') && !rootElPlusOne.classList.contains('four-long') && !rootElPlusTwo.classList.contains('four-long')) && (!rootEl.classList.contains('two-long') && !rootElPlusOne.classList.contains('two-long') && !rootElPlusTwo.classList.contains('two-long'))) {
+                        if ((rootEl.classList.length === 1 || rootEl.classList.contains('three-long')) && (rootElPlusOne.classList.length === 1 || rootElPlusOne.classList.contains('three-long')) && (rootElPlusTwo.classList.length === 1 || rootElPlusTwo.classList.contains('three-long'))) {
                             const targets = document.querySelectorAll('.grid-square.three-long')
                             if (targets) {
                                 targets.forEach(target => target.classList.remove('three-long'))
@@ -96,7 +110,7 @@ export default function dragAndDrop() {
                 }
                 if (currentDrag.shipId === 'two-long') {
                     if (rootY + outOfBoundsX - 2 < 9 && rootY + outOfBoundsY >= 0) {
-                        if ((!rootEl.classList.contains('three-long') && !rootElPlusOne.classList.contains('three-long')) && (!rootEl.classList.contains('four-long') && !rootElPlusOne.classList.contains('four-long'))) {
+                        if ((rootEl.classList.length === 1 || rootEl.classList.contains('two-long')) && (rootElPlusOne.classList.length === 1 || rootElPlusOne.classList.contains('two-long'))) {
                             const targets = document.querySelectorAll('.grid-square.two-long')
                             if (targets) {
                                 targets.forEach(target => target.classList.remove('two-long'))
@@ -117,6 +131,12 @@ export default function dragAndDrop() {
                         document.querySelector('.ship.four-long').removeChild(document.querySelector('.ship.four-long').firstChild);
                     }
                     document.querySelector('.ship.four-long').remove()
+                }
+                if (droppedShip.classList.contains('four-long-2')) {
+                    while (document.querySelector('.ship.four-long-2').firstChild) {
+                        document.querySelector('.ship.four-long-2').removeChild(document.querySelector('.ship.four-long-2').firstChild);
+                    }
+                    document.querySelector('.ship.four-long-2').remove()
                 }
                 if (droppedShip.classList.contains('three-long')) {
                     while (document.querySelector('.ship.three-long').firstChild) {
@@ -159,6 +179,12 @@ export default function dragAndDrop() {
             }
             document.querySelector('.ship.four-long').remove();
         }
+        if (document.querySelector('.ship.four-long-2')) {
+            while (document.querySelector('.ship.four-long-2').firstChild) {
+                document.querySelector('.ship.four-long-2').removeChild(document.querySelector('.ship.four-long-2').lastChild)
+            }
+            document.querySelector('.ship.four-long-2').remove();
+        }
         if (document.querySelector('.ship.three-long')) {
             while (document.querySelector('.ship.three-long').firstChild) {
                 document.querySelector('.ship.three-long').removeChild(document.querySelector('.ship.three-long').lastChild)
@@ -183,7 +209,7 @@ export default function dragAndDrop() {
         ship.draggable = true;
         const shipsBay = document.querySelector('.ships-bay');
         shipsBay.appendChild(ship);
-        if (shipId === 'four-long') {
+        if (shipId === 'four-long' || shipId === 'four-long-2') {
             for (let i = 0; i < 4; i++) {
                 const shipSquare = document.createElement('div');
                 shipSquare.classList.add('ship-square');
@@ -215,6 +241,7 @@ export default function dragAndDrop() {
         createGrid();
         removeShipsFromContainer();
         addShipToContainer('four-long');
+        addShipToContainer('four-long-2');
         addShipToContainer('three-long')
         addShipToContainer('two-long');
         addEventListenersToShips();
@@ -238,7 +265,9 @@ export default function dragAndDrop() {
         })
     
     }
-    
+
+    resetShips();
+
     const rotateButton = document.querySelector('#rotate-ships-button');
     rotateButton.addEventListener('click', rotateShips);
 }

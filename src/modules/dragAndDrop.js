@@ -263,11 +263,198 @@ export default function dragAndDrop() {
             console.log('rotate')
             ship.classList.toggle('vertical')
         })
-    
     }
 
+    const placeShipsRandomly = () => {
+        clearGrid();
+        createGrid();
+        let ships = [
+            {
+                name: 'four-long',
+                length: 4,
+                placed: false,
+            }, 
+            {
+                name: 'four-long-2',
+                length: 4,
+                placed: false,
+            }, 
+            {
+                name: 'three-long',
+                length: 3,
+                placed: false,
+            }, 
+            {
+                name: 'two-long',
+                length: 2,
+                placed: false,
+            }
+        ];
+
+        const randomOrigin = (maxDistance) => Math.floor(Math.random()*maxDistance);
+        
+        const squareIsEmpty = (gridSquareElement) => gridSquareElement.classList.length === 1 ? true : false
+
+        ships.forEach(ship => {
+            let orientations = ['horizontal', 'vertical'];
+            let orientation = orientations[Math.floor(Math.random() * orientations.length)];
+            let originX;
+            let originY;
+            let rootEl;
+            let rootElPlusOne;
+            let rootElPlusTwo;
+            let rootElPlusThree;
+
+            const placeShipOnBoard = (name, squares) => {
+                switch (name) {
+                    case 'four-long':
+                        if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1]) && squareIsEmpty(squares[2]) && squareIsEmpty(squares[3])) {
+                            squares.forEach(square => {
+                                square.classList.add(name);
+                            })
+                        } else if (orientation === 'horizontal'){
+                            originX = randomOrigin(8);
+                            originY = randomOrigin(5);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne, rootElPlusTwo, rootElPlusThree]);
+                        } else {
+                            originX = randomOrigin(5);
+                            originY = randomOrigin(8);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne, rootElPlusTwo, rootElPlusThree]);
+                        }
+                        break;
+                    case 'four-long-2':
+                        if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1]) && squareIsEmpty(squares[2]) && squareIsEmpty(squares[3])) {
+                            squares.forEach(square => {
+                                square.classList.add(name);
+                            })
+                        } else if (orientation === 'horizontal') {
+                            originX = randomOrigin(8);
+                            originY = randomOrigin(5);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne, rootElPlusTwo, rootElPlusThree]);
+                        } else {
+                            originX = randomOrigin(5);
+                            originY = randomOrigin(8);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne, rootElPlusTwo, rootElPlusThree]);
+                        }
+                        break;
+                    case 'three-long': 
+                        if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1]) && squareIsEmpty(squares[2])) {
+                            squares.forEach(square => {
+                                square.classList.add(name);
+                            })
+                        } else if (orientation === 'horizontal') {
+                            originX = randomOrigin(8);
+                            originY = randomOrigin(6);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne, rootElPlusTwo]);
+                        } else {
+                            originX = randomOrigin(6);
+                            originY = randomOrigin(8);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne, rootElPlusTwo]);
+                        }
+                        break;
+                    case 'two-long':
+                        if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1])) {
+                            squares.forEach(square => {
+                                square.classList.add(name);
+                            })
+                        } else if(orientation === 'horizontal') {
+                            originX = randomOrigin(8);
+                            originY = randomOrigin(7);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne]);
+                        } else {
+                            originX = randomOrigin(7);
+                            originY = randomOrigin(8);
+                            setRootElements();
+                            placeShipOnBoard(name, [rootEl, rootElPlusOne]);
+                        }
+                }
+                
+            }
+
+            const setRootElements = () => {
+                if (orientation === 'horizontal') {
+                    rootEl = document.querySelector(`[data-x="${originX.toString()}"][data-y="${originY.toString()}"]`);
+                    rootElPlusOne = document.querySelector(`[data-x="${originX.toString()}"][data-y="${(originY + 1).toString()}"]`);
+                    rootElPlusTwo = document.querySelector(`[data-x="${originX.toString()}"][data-y="${(originY + 2).toString()}"]`);
+                    rootElPlusThree = document.querySelector(`[data-x="${originX.toString()}"][data-y="${(originY + 3).toString()}"]`);
+                }
+                if (orientation === 'vertical') {
+                    rootEl = document.querySelector(`[data-x="${originX.toString()}"][data-y="${originY.toString()}"]`);
+                    rootElPlusOne = document.querySelector(`[data-x="${(originX + 1).toString()}"][data-y="${(originY).toString()}"]`);
+                    rootElPlusTwo = document.querySelector(`[data-x="${(originX + 2).toString()}"][data-y="${(originY).toString()}"]`);
+                    rootElPlusThree = document.querySelector(`[data-x="${(originX + 3).toString()}"][data-y="${(originY).toString()}"]`);
+                }
+            }
+
+            if (ship.name === 'four-long') {
+                if (orientation === 'horizontal') {
+                    originX = randomOrigin(8);
+                    originY = randomOrigin(5);
+                    setRootElements();
+                }
+                if (orientation === 'vertical') {
+                    originX = randomOrigin(5);
+                    originY = randomOrigin(8);
+                    setRootElements();
+                }
+                placeShipOnBoard(ship.name, [rootEl, rootElPlusOne, rootElPlusTwo, rootElPlusThree]);
+            }
+            if (ship.name === 'four-long-2') {
+                if (orientation === 'horizontal') {
+                    originX = randomOrigin(8);
+                    originY = randomOrigin(5);
+                    setRootElements();
+                }
+                if (orientation === 'vertical') {
+                    originX = randomOrigin(5);
+                    originY = randomOrigin(8);
+                    setRootElements();
+                }
+                placeShipOnBoard(ship.name, [rootEl, rootElPlusOne, rootElPlusTwo, rootElPlusThree]);    
+            }
+            if (ship.name === 'three-long') {
+                if (orientation === 'horizontal') {
+                    originX = randomOrigin(8);
+                    originY = randomOrigin(6);
+                    setRootElements();
+                }
+                if (orientation === 'vertical') {
+                    originX = randomOrigin(6);
+                    originY = randomOrigin(8);
+                    setRootElements();
+                }
+                placeShipOnBoard(ship.name, [rootEl, rootElPlusOne, rootElPlusTwo]);
+            }
+            if (ship.name === 'two-long') {
+                if (orientation === 'horizontal') {
+                    originX = randomOrigin(8);
+                    originY = randomOrigin(7);
+                    setRootElements();
+                }
+                if (orientation === 'vertical') {
+                    originX = randomOrigin(7);
+                    originY = randomOrigin(8);
+                    setRootElements();
+                }
+                placeShipOnBoard(ship.name, [rootEl, rootElPlusOne]);
+            }
+        })
+        removeShipsFromContainer();
+    }
+    
     resetShips();
 
     const rotateButton = document.querySelector('#rotate-ships-button');
     rotateButton.addEventListener('click', rotateShips);
+
+    const randomizeShipsButton = document.querySelector('#randomize-ships-button');
+    randomizeShipsButton.addEventListener('click', placeShipsRandomly);
+
 }

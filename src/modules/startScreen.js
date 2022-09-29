@@ -21,6 +21,10 @@ export default function startScreen() {
     rotateShipsButton.id = 'rotate-ships-button';
     rotateShipsButton.textContent = 'Rotate Ships';
 
+    const randomizeShipsButton = document.createElement('button');
+    randomizeShipsButton.id = 'randomize-ships-button';
+    randomizeShipsButton.textContent = 'Auto-place Ships';
+
     const shipsHeader = document.createElement('h1');
     shipsHeader.id = 'ship-header';
     shipsHeader.textContent = 'Ships';
@@ -35,6 +39,7 @@ export default function startScreen() {
     shipsContainer.appendChild(shipButtons);
     shipButtons.appendChild(resetShipsButton);
     shipButtons.appendChild(rotateShipsButton);
+    shipButtons.appendChild(randomizeShipsButton);
     shipsContainer.appendChild(shipsHeader);
     shipsContainer.appendChild(shipsBay);
 }

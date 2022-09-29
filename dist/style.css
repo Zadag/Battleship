@@ -141,6 +141,7 @@ table {
     width: 80%;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #ship-header {
@@ -157,6 +158,7 @@ table {
 #ships-bay-vertical {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -177,7 +179,7 @@ table {
     display: flex;
     border: solid;
     border-width: 1px;
-    background-color: red;
+    background-color: pink;
     cursor: move;
 }
 
@@ -209,11 +211,15 @@ table {
 }
 
 #reset-ships-button {
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 #rotate-ships-button {
-    margin-top: 15%;
+    margin-top: 5%;
+}
+
+#randomize-ships-button {
+    margin-top: 5%;
 }
 
 .vertical {

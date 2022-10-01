@@ -265,6 +265,7 @@ export default function dragAndDrop() {
         })
     }
 
+    // Truly an abomination of a function.  Could be much more DRY but it's low priority
     const placeShipsRandomly = () => {
         clearGrid();
         createGrid();

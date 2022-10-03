@@ -19,6 +19,34 @@ export default function dragAndDrop() {
         }
     }
 
+    const addPlayButton = () => {
+        const playButton = document.createElement('button');
+        playButton.id = 'play-button';
+        playButton.textContent = 'Start game';
+        const shipsContainer = document.querySelector('#ships-container');
+        shipsContainer.appendChild(playButton);
+    }
+
+    const removePlayButton = () => {
+        const playButton = document.querySelector('#play-button');
+        if (playButton) playButton.remove();
+    }
+
+    const handlePlayButton = () => {
+        const shipsBay = document.querySelector('.ships-bay');
+        console.log('handling play');
+        if (shipsBay.firstChild) {
+            if (document.querySelector('play-button')) {
+                removePlayButton();
+                return
+            }
+            return
+        }
+
+        removePlayButton();
+        addPlayButton();
+    }
+
     createGrid();
 
     let currentDrag = {};
@@ -151,6 +179,7 @@ export default function dragAndDrop() {
                     document.querySelector('.ship.two-long').remove()
                 }
                 const droppedElement = e.dataTransfer.getData('text/plain');
+                handlePlayButton();
             })
     
             let board = document.querySelector('#board-grid');
@@ -245,6 +274,7 @@ export default function dragAndDrop() {
         addShipToContainer('three-long')
         addShipToContainer('two-long');
         addEventListenersToShips();
+        removePlayButton();
     }
     
     const resetButton = document.querySelector('#reset-ships-button');
@@ -448,9 +478,11 @@ export default function dragAndDrop() {
             }
         })
         removeShipsFromContainer();
+        handlePlayButton();
     }
     
     resetShips();
+    removePlayButton();
 
     const rotateButton = document.querySelector('#rotate-ships-button');
     rotateButton.addEventListener('click', rotateShips);

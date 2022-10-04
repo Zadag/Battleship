@@ -6,6 +6,6 @@ import dragAndDrop from './modules/dragAndDrop';
 header();
 startScreen();
 dragAndDrop();
-// const game = gameLoop();
+//const game = gameLoop();
 
-// game.init();
+//game.init();

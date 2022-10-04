@@ -19,6 +19,15 @@ export default function dragAndDrop() {
         }
     }
 
+    const formatShipsForGame = () => {
+        const grid = document.querySelector('#board-grid');
+        const fourLongElements = document.querySelectorAll('.four-long');
+        const four2LongElements = document.querySelectorAll('.four-long-2');
+        const threeLongElements = document.querySelectorAll('.three-long');
+        const twoLongElements = document.querySelectorAll('.two-long');
+
+    }
+
     const addPlayButton = () => {
         const playButton = document.createElement('button');
         playButton.id = 'play-button';
@@ -36,7 +45,7 @@ export default function dragAndDrop() {
         const shipsBay = document.querySelector('.ships-bay');
         console.log('handling play');
         if (shipsBay.firstChild) {
-            if (document.querySelector('play-button')) {
+            if (document.querySelector('#play-button')) {
                 removePlayButton();
                 return
             }
@@ -45,6 +54,8 @@ export default function dragAndDrop() {
 
         removePlayButton();
         addPlayButton();
+        const playButton = document.querySelector('#play-button');
+        playButton.addEventListener('click', () => console.log('hello'));
     }
 
     createGrid();
@@ -489,5 +500,4 @@ export default function dragAndDrop() {
 
     const randomizeShipsButton = document.querySelector('#randomize-ships-button');
     randomizeShipsButton.addEventListener('click', placeShipsRandomly);
-
 }

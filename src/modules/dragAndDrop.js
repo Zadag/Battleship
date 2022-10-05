@@ -20,12 +20,22 @@ export default function dragAndDrop() {
     }
 
     const formatShipsForGame = () => {
-        const grid = document.querySelector('#board-grid');
-        const fourLongElements = document.querySelectorAll('.four-long');
-        const four2LongElements = document.querySelectorAll('.four-long-2');
-        const threeLongElements = document.querySelectorAll('.three-long');
-        const twoLongElements = document.querySelectorAll('.two-long');
+        let outputArray = []; //Array of objects for parameters of placeShip()
+        const fourLongElements = Array.from(document.querySelectorAll('.four-long'));
+        const four2LongElements = Array.from(document.querySelectorAll('.four-long-2'));
+        const threeLongElements = Array.from(document.querySelectorAll('.three-long'));
+        const twoLongElements = Array.from(document.querySelectorAll('.two-long'));
+        let shipsArray = [fourLongElements, four2LongElements, threeLongElements, twoLongElements];
 
+        shipsArray.forEach(ship => {
+            outputArray.push({
+                coords: [parseInt(ship[0].dataset.x), parseInt(ship[0].dataset.y)],
+                length: ship.length,
+                orientation: ship[0].dataset.orientation
+            })
+        });
+
+        return outputArray;
     }
 
     const addPlayButton = () => {
@@ -55,7 +65,7 @@ export default function dragAndDrop() {
         removePlayButton();
         addPlayButton();
         const playButton = document.querySelector('#play-button');
-        playButton.addEventListener('click', () => console.log('hello'));
+        playButton.addEventListener('click', formatShipsForGame);
     }
 
     createGrid();
@@ -86,7 +96,9 @@ export default function dragAndDrop() {
                 let rootElPlusThree;
                 let outOfBoundsX;
                 let outOfBoundsY;
+                let orientation; 
                 if (shipsBay.id === 'ships-bay-horizontal') {
+                    orientation = 'horizontal'
                     rootX = parseInt(e.target.dataset.x);
                     rootY = parseInt(e.target.dataset.y - currentDrag.shipPos);
                     rootEl = document.querySelector(`[data-x="${rootX.toString()}"][data-y="${rootY.toString()}"]`);
@@ -97,6 +109,7 @@ export default function dragAndDrop() {
                     outOfBoundsY = 0;
                 }
                 if (shipsBay.id === 'ships-bay-vertical') {
+                    orientation = 'vertical';
                     rootX = parseInt(e.target.dataset.x - currentDrag.shipPos);
                     rootY = parseInt(e.target.dataset.y);
                     rootEl = document.querySelector(`[data-x="${rootX.toString()}"][data-y="${rootY.toString()}"]`);
@@ -114,6 +127,7 @@ export default function dragAndDrop() {
                                 targets.forEach(target => target.classList.remove('four-long'))
                             }
                             rootEl.classList.add('four-long');
+                            rootEl.dataset.orientation = orientation;
                             rootElPlusOne.classList.add('four-long');
                             rootElPlusTwo.classList.add('four-long');
                             rootElPlusThree.classList.add('four-long');
@@ -128,6 +142,7 @@ export default function dragAndDrop() {
                                 targets.forEach(target => target.classList.remove('four-long-2'))
                             }
                             rootEl.classList.add('four-long-2');
+                            rootEl.dataset.orientation = orientation;
                             rootElPlusOne.classList.add('four-long-2');
                             rootElPlusTwo.classList.add('four-long-2');
                             rootElPlusThree.classList.add('four-long-2');
@@ -142,6 +157,7 @@ export default function dragAndDrop() {
                                 targets.forEach(target => target.classList.remove('three-long'))
                             }
                             rootEl.classList.add('three-long');
+                            rootEl.dataset.orientation = orientation;
                             rootElPlusOne.classList.add('three-long');
                             rootElPlusTwo.classList.add('three-long');
                         }
@@ -155,6 +171,7 @@ export default function dragAndDrop() {
                                 targets.forEach(target => target.classList.remove('two-long'))
                             }
                             rootEl.classList.add('two-long');
+                            rootEl.dataset.orientation = orientation;
                             rootElPlusOne.classList.add('two-long');
                         }
                     }
@@ -353,6 +370,7 @@ export default function dragAndDrop() {
                         if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1]) && squareIsEmpty(squares[2]) && squareIsEmpty(squares[3])) {
                             squares.forEach(square => {
                                 square.classList.add(name);
+                                square.dataset.orientation = orientation;
                             })
                         } else if (orientation === 'horizontal'){
                             originX = randomOrigin(8);
@@ -370,6 +388,7 @@ export default function dragAndDrop() {
                         if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1]) && squareIsEmpty(squares[2]) && squareIsEmpty(squares[3])) {
                             squares.forEach(square => {
                                 square.classList.add(name);
+                                square.dataset.orientation = orientation;
                             })
                         } else if (orientation === 'horizontal') {
                             originX = randomOrigin(8);
@@ -387,6 +406,7 @@ export default function dragAndDrop() {
                         if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1]) && squareIsEmpty(squares[2])) {
                             squares.forEach(square => {
                                 square.classList.add(name);
+                                square.dataset.orientation = orientation;
                             })
                         } else if (orientation === 'horizontal') {
                             originX = randomOrigin(8);
@@ -404,6 +424,7 @@ export default function dragAndDrop() {
                         if (squareIsEmpty(squares[0]) && squareIsEmpty(squares[1])) {
                             squares.forEach(square => {
                                 square.classList.add(name);
+                                square.dataset.orientation = orientation;
                             })
                         } else if(orientation === 'horizontal') {
                             originX = randomOrigin(8);

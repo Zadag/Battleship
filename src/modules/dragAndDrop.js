@@ -20,7 +20,7 @@ export default function dragAndDrop() {
     }
 
     const formatShipsForGame = () => {
-        let outputArray = []; //Array of objects for parameters of placeShip()
+        let outputArray = []; //Array of objects containing parameters for gameboard.placeShip()
         const fourLongElements = Array.from(document.querySelectorAll('.four-long'));
         const four2LongElements = Array.from(document.querySelectorAll('.four-long-2'));
         const threeLongElements = Array.from(document.querySelectorAll('.three-long'));
@@ -53,7 +53,6 @@ export default function dragAndDrop() {
 
     const handlePlayButton = () => {
         const shipsBay = document.querySelector('.ships-bay');
-        console.log('handling play');
         if (shipsBay.firstChild) {
             if (document.querySelector('#play-button')) {
                 removePlayButton();

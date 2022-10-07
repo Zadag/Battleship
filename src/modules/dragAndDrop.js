@@ -1,5 +1,10 @@
 export default function dragAndDrop() {
     const grid = document.querySelector('#board-grid');
+    const playButton = document.createElement('button');
+    playButton.id = 'play-button';
+    playButton.textContent = 'Start Game';
+    const shipsContainer = document.querySelector('#ships-container');
+    shipsContainer.appendChild(playButton);
 
     const createGrid = () => {
         for (let i = 0; i < 8; i++) {
@@ -19,36 +24,14 @@ export default function dragAndDrop() {
         }
     }
 
-    const formatShipsForGame = () => {
-        let outputArray = []; //Array of objects containing parameters for gameboard.placeShip()
-        const fourLongElements = Array.from(document.querySelectorAll('.four-long'));
-        const four2LongElements = Array.from(document.querySelectorAll('.four-long-2'));
-        const threeLongElements = Array.from(document.querySelectorAll('.three-long'));
-        const twoLongElements = Array.from(document.querySelectorAll('.two-long'));
-        let shipsArray = [fourLongElements, four2LongElements, threeLongElements, twoLongElements];
-
-        shipsArray.forEach(ship => {
-            outputArray.push({
-                coords: [parseInt(ship[0].dataset.x), parseInt(ship[0].dataset.y)],
-                length: ship.length,
-                orientation: ship[0].dataset.orientation
-            })
-        });
-
-        return outputArray;
-    }
-
     const addPlayButton = () => {
-        const playButton = document.createElement('button');
-        playButton.id = 'play-button';
-        playButton.textContent = 'Start game';
-        const shipsContainer = document.querySelector('#ships-container');
-        shipsContainer.appendChild(playButton);
+        const playButton = document.querySelector('#play-button');
+        playButton.style.display = 'inline-block';
     }
 
     const removePlayButton = () => {
         const playButton = document.querySelector('#play-button');
-        if (playButton) playButton.remove();
+        if (playButton) playButton.style.display = 'none';
     }
 
     const handlePlayButton = () => {
@@ -63,8 +46,6 @@ export default function dragAndDrop() {
 
         removePlayButton();
         addPlayButton();
-        const playButton = document.querySelector('#play-button');
-        playButton.addEventListener('click', formatShipsForGame);
     }
 
     createGrid();

@@ -3,8 +3,8 @@ import shipFactory from './ship';
 export default function gameboardFactory() {
     const board = [];
 
-    for (let i = 0; i < 10; i += 1) {
-        board.push(Array(10).fill(0));
+    for (let i = 0; i < 8; i += 1) {
+        board.push(Array(8).fill(0));
     }
 
     const getBoard = () => [...board];
@@ -20,8 +20,8 @@ export default function gameboardFactory() {
     };
 
     const allSunk = () => {
-        for (let i = 0; i < 10; i += 1) {
-            for (let j = 0; j < 10; j += 1) {
+        for (let i = 0; i < 8; i += 1) {
+            for (let j = 0; j < 8; j += 1) {
                 if (typeof board[i][j] === 'object') {
                     if (board[i][j].ship.isSunk() === false) return false;
                 }

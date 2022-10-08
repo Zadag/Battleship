@@ -11,10 +11,14 @@ dragAndDrop();
 
 const playButton = document.querySelector('#play-button');
 playButton.addEventListener('click', () => {
-    const shipData = formatShipsForGame();
+    const playerShipData = formatShipsForGame();
+    clearContent();
+    startScreen();
+    dragAndDrop('CPU');
+    const CPUShipData = formatShipsForGame();
     clearContent();
     const game = gameLoop();
-    game.init(shipData);
+    game.init(playerShipData, CPUShipData, 'Player');
 });
 
 

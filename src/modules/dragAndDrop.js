@@ -1,4 +1,4 @@
-export default function dragAndDrop() {
+export default function dragAndDrop(playerType = 'player') {
     const grid = document.querySelector('#board-grid');
     const playButton = document.createElement('button');
     playButton.id = 'play-button';
@@ -501,4 +501,8 @@ export default function dragAndDrop() {
 
     const randomizeShipsButton = document.querySelector('#randomize-ships-button');
     randomizeShipsButton.addEventListener('click', placeShipsRandomly);
+
+    if (playerType === 'CPU') {
+        placeShipsRandomly();
+    }
 }

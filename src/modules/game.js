@@ -56,19 +56,22 @@ export default function gameLoop() {
         });
     };
 
-    const init = (shipData, playerName = 'Player') => {
+    const init = (playerShipData, CPUShipData, playerName = 'Player') => {
         const player1 = playerFactory(playerName, true, false);
         const player2 = playerFactory('CPU', false, true);
-        shipData.forEach(ship => {
+        playerShipData.forEach(ship => {
             player1.board.placeShip(ship.coords, ship.length, ship.orientation);
         })
 
+        CPUShipData.forEach(ship => {
+            player2.board.placeShip(ship.coords, ship.length, ship.orientation);
+        })
         //player1.board.placeShip([0, 0], 4, 'horizontal');
         //player1.board.placeShip([3, 3], 3, 'vertical');
         //player1.board.placeShip([5, 5], 2, 'horizontal');
-        player2.board.placeShip([0, 0], 4, 'horizontal');
-        player2.board.placeShip([3, 3], 3, 'vertical');
-        player2.board.placeShip([5, 5], 2, 'horizontal');
+        //player2.board.placeShip([0, 0], 4, 'horizontal');
+        //player2.board.placeShip([3, 3], 3, 'vertical');
+        //player2.board.placeShip([5, 5], 2, 'horizontal');
         players.push(player1, player2);
         displayBoard(player1);
         displayBoard(player2);

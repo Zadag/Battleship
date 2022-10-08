@@ -21,7 +21,7 @@ export default function gameLoop() {
 
         playerBoard.addEventListener('click', (e) => {
             const { x, y } = e.target.dataset;
-            if (players[0].isTurn && (players[0].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[0].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
+            if (players[1].isTurn && (players[0].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[0].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
                 players[0].board.recieveAttack([x, y]);
                 removeBoard(playerBoard);
                 removeBoard(cpuBoard);
@@ -32,14 +32,14 @@ export default function gameLoop() {
                     return;
                 }
                 addGameboardEvents();
-                players[0].isTurn = false;
-                players[1].isTurn = true;
+                players[0].isTurn = true;
+                players[1].isTurn = false;
             }
         });
 
         cpuBoard.addEventListener('click', (e) => {
             const { x, y } = e.target.dataset;
-            if (players[1].isTurn && (players[1].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[1].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
+            if (players[0].isTurn && (players[1].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[1].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
                 players[1].board.recieveAttack([x, y]);
                 removeBoard(cpuBoard);
                 removeBoard(playerBoard);
@@ -50,8 +50,8 @@ export default function gameLoop() {
                     return;
                 }
                 addGameboardEvents();
-                players[0].isTurn = true;
-                players[1].isTurn = false;
+                players[0].isTurn = false;
+                players[1].isTurn = true;
             }
         });
     };

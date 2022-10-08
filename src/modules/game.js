@@ -15,7 +15,7 @@ export default function gameLoop() {
         }
     };
 
-    const addGameboardEvents = () => {
+    const addGameboardEvents = (multiplayer) => {
         const playerBoard = document.querySelector('.player-gameboard');
         const cpuBoard = document.querySelector('.CPU-gameboard');
 
@@ -34,6 +34,16 @@ export default function gameLoop() {
                 addGameboardEvents();
                 players[0].isTurn = true;
                 players[1].isTurn = false;
+                if (multiplayer === true) {
+                    // wait .5 seconds
+                    // get random open coords
+                    // players[1].board.recieveAttack(randomCoords);
+                    // removeBoard(playerBoard);
+                    // removeBoard(cpuBoard);
+                    // displayBoard(players[0], true);
+                    // displayBoard(players[1], true);
+                    
+                }
             }
         });
 
@@ -56,7 +66,7 @@ export default function gameLoop() {
         });
     };
 
-    const init = (playerShipData, CPUShipData, playerName = 'Player') => {
+    const init = (playerShipData, CPUShipData, playerName = 'Player', multiplayer = false) => {
         const player1 = playerFactory(playerName, true, false);
         const player2 = playerFactory('CPU', false, true);
         playerShipData.forEach(ship => {
@@ -70,7 +80,7 @@ export default function gameLoop() {
         players.push(player1, player2);
         displayBoard(player1, true);
         displayBoard(player2, true);
-        addGameboardEvents();
+        addGameboardEvents(multiplayer);
     };
 
     return {

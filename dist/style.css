@@ -222,6 +222,10 @@ table {
     margin-top: 10%
 }
 
+.gameboard-ship-square {
+    background-color: black !important;
+}
+
 #reset-ships-button {
     margin-top: 5%;
 }

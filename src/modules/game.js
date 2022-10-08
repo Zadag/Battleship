@@ -25,8 +25,8 @@ export default function gameLoop() {
                 players[0].board.recieveAttack([x, y]);
                 removeBoard(playerBoard);
                 removeBoard(cpuBoard);
-                displayBoard(players[0]);
-                displayBoard(players[1]);
+                displayBoard(players[0], true);
+                displayBoard(players[1], true);
                 if (players[0].board.allSunk()) {
                     console.log(`${players[1].playerName} Won`);
                     return;
@@ -43,8 +43,8 @@ export default function gameLoop() {
                 players[1].board.recieveAttack([x, y]);
                 removeBoard(cpuBoard);
                 removeBoard(playerBoard);
-                displayBoard(players[0]);
-                displayBoard(players[1]);
+                displayBoard(players[0], true);
+                displayBoard(players[1], true);
                 if (players[1].board.allSunk()) {
                     console.log(`${players[0].playerName} Won`);
                     return;
@@ -61,20 +61,15 @@ export default function gameLoop() {
         const player2 = playerFactory('CPU', false, true);
         playerShipData.forEach(ship => {
             player1.board.placeShip(ship.coords, ship.length, ship.orientation);
-        })
+        });
 
         CPUShipData.forEach(ship => {
             player2.board.placeShip(ship.coords, ship.length, ship.orientation);
-        })
-        //player1.board.placeShip([0, 0], 4, 'horizontal');
-        //player1.board.placeShip([3, 3], 3, 'vertical');
-        //player1.board.placeShip([5, 5], 2, 'horizontal');
-        //player2.board.placeShip([0, 0], 4, 'horizontal');
-        //player2.board.placeShip([3, 3], 3, 'vertical');
-        //player2.board.placeShip([5, 5], 2, 'horizontal');
+        });
+
         players.push(player1, player2);
-        displayBoard(player1);
-        displayBoard(player2);
+        displayBoard(player1, true);
+        displayBoard(player2, true);
         addGameboardEvents();
     };
 

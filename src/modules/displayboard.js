@@ -1,4 +1,4 @@
-export default function displayBoard(playerObj) {
+export default function displayBoard(playerObj, visible = false) {
     const content = document.querySelector('#content');
     const gameboardContainer = document.createElement('div');
     gameboardContainer.classList.add('gameboard-container');
@@ -18,6 +18,9 @@ export default function displayBoard(playerObj) {
             const boardCell = document.createElement('div');
             if (playerObj.board.isCellHit([i, j]) === 'Cell is an unhit ship' || playerObj.board.isCellHit([i, j]) === 'Cell is an unhit water') {
                 boardCell.classList.add('not-hit');
+            }
+            if (playerObj.board.isCellHit([i, j]) === 'Cell is an unhit ship' && visible === true) {
+                boardCell.classList.add('gameboard-ship-square');
             }
             if (playerObj.board.isCellHit([i, j]) === 'Cell is a hit water') {
                 boardCell.classList.add('hit-water');

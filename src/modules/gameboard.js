@@ -33,9 +33,13 @@ export default function gameboardFactory() {
     const placeShip = (coords, length, allignment) => {
         const [x, y] = coords;
         if (allignment === 'horizontal') {
-            if (board[x][y + length] === undefined) return 'error: out of bounds';
+            if (board[x][y + length - 1] === undefined) {
+                return 'error: out of bounds';
+            }
             for (let i = 0; i < length; i += 1) {
-                if (isShip([x, y + i])) return 'error: occupied by ship';
+                if (isShip([x, y + i])) {
+                    return 'error: occupied by ship';
+                } 
             }
             const ship = shipFactory(length);
             for (let i = 0; i < length; i += 1) {
@@ -46,9 +50,13 @@ export default function gameboardFactory() {
             }
         }
         if (allignment === 'vertical') {
-            if (board[x + length] === undefined) return 'error: out of bounds';
+            if (board[y][x + length - 1] === undefined) { 
+                return 'error: out of bounds';
+            }
             for (let i = 0; i < length; i += 1) {
-                if (isShip([x + i, y])) return 'error: occupied by ship';
+                if (isShip([x + i, y])) {
+                    return 'error: occupied by ship';
+                }
             }
             const ship = shipFactory(length);
             for (let i = 0; i < length; i += 1) {

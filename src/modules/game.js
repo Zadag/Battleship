@@ -19,34 +19,6 @@ export default function gameLoop() {
         const playerBoard = document.querySelector('.player-gameboard');
         const cpuBoard = document.querySelector('.CPU-gameboard');
 
-        playerBoard.addEventListener('click', (e) => {
-            const { x, y } = e.target.dataset;
-            if (players[1].isTurn && (players[0].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[0].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
-                players[0].board.recieveAttack([x, y]);
-                removeBoard(playerBoard);
-                removeBoard(cpuBoard);
-                displayBoard(players[0], true);
-                displayBoard(players[1], true);
-                if (players[0].board.allSunk()) {
-                    console.log(`${players[1].playerName} Won`);
-                    return;
-                }
-                addGameboardEvents();
-                players[0].isTurn = true;
-                players[1].isTurn = false;
-                if (multiplayer === true) {
-                    // wait .5 seconds
-                    // get random open coords
-                    // players[1].board.recieveAttack(randomCoords);
-                    // removeBoard(playerBoard);
-                    // removeBoard(cpuBoard);
-                    // displayBoard(players[0], true);
-                    // displayBoard(players[1], true);
-                    
-                }
-            }
-        });
-
         cpuBoard.addEventListener('click', (e) => {
             const { x, y } = e.target.dataset;
             if (players[0].isTurn && (players[1].board.isCellHit([x, y]) === 'Cell is an unhit ship' || players[1].board.isCellHit([x, y]) === 'Cell is an unhit water')) {
@@ -54,14 +26,39 @@ export default function gameLoop() {
                 removeBoard(cpuBoard);
                 removeBoard(playerBoard);
                 displayBoard(players[0], true);
-                displayBoard(players[1], true);
+                displayBoard(players[1], false);
                 if (players[1].board.allSunk()) {
                     console.log(`${players[0].playerName} Won`);
                     return;
                 }
-                addGameboardEvents();
+                addGameboardEvents(true);
                 players[0].isTurn = false;
                 players[1].isTurn = true;
+                
+                if (multiplayer === true) {
+                    setTimeout(() => {
+                        const newCPUBoard = document.querySelector('.CPU-gameboard');
+                        const newPlayerBoard = document.querySelector('.player-gameboard');
+                        const CPUGameboard = document.querySelector('.CPU-gameboard > .gameboard');
+                        console.log(CPUGameboard);
+                        const unhitSquares = Array.from(CPUGameboard.querySelectorAll('.not-hit'));
+                        console.log(unhitSquares);
+                        const randomSquare = unhitSquares[Math.floor(Math.random() * unhitSquares.length)];
+                        console.log(randomSquare);
+                        players[0].board.recieveAttack([parseInt(randomSquare.dataset.x), parseInt(randomSquare.dataset.y)]);
+                        removeBoard(newCPUBoard);
+                        removeBoard(newPlayerBoard);
+                        displayBoard(players[0], true);
+                        displayBoard(players[1], false);
+                        if (players[1].board.allSunk()) {
+                            console.log(`${players[0].playerName} Won`);
+                            return
+                        }
+                        addGameboardEvents(true);
+                        players[0].isTurn = true;
+                        players[1].isTurn = false;
+                    }, '500');  
+                }
             }
         });
     };
@@ -79,8 +76,8 @@ export default function gameLoop() {
 
         players.push(player1, player2);
         displayBoard(player1, true);
-        displayBoard(player2, true);
-        addGameboardEvents(multiplayer);
+        displayBoard(player2, false);
+        addGameboardEvents(true);
     };
 
     return {

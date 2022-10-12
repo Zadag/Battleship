@@ -20,8 +20,3 @@ playButton.addEventListener('click', () => {
     const game = gameLoop();
     game.init(playerShipData, CPUShipData, 'Player');
 });
-
-
-//const game = gameLoop();
-
-//game.init();

@@ -41,7 +41,7 @@ export default function gameLoop() {
                         const newPlayerBoard = document.querySelector('.player-gameboard');
                         const CPUGameboard = document.querySelector('.CPU-gameboard > .gameboard');
                         console.log(CPUGameboard);
-                        const unhitSquares = Array.from(CPUGameboard.querySelectorAll('.not-hit'));
+                        const unhitSquares = Array.from(newPlayerBoard.querySelectorAll('.not-hit'));
                         console.log(unhitSquares);
                         const randomSquare = unhitSquares[Math.floor(Math.random() * unhitSquares.length)];
                         console.log(randomSquare);

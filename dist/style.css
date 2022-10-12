@@ -100,6 +100,11 @@ table {
 
 .not-hit {
     background-color: darkgrey;
+    cursor: pointer;
+}
+
+.not-hit:hover {
+    background-color: beige;
 }
 
 .hit-water {
@@ -241,6 +246,10 @@ table {
 
 #randomize-ships-button {
     margin-top: 5%;
+}
+
+#play-button {
+    margin-top: 15%;
 }
 
 .vertical {

@@ -28,7 +28,6 @@ export default function gameLoop() {
                 displayBoard(players[0], true);
                 displayBoard(players[1], false);
                 if (players[1].board.allSunk()) {
-                    console.log(`${players[0].playerName} Won`);
                     document.querySelector('.winner-text').textContent = 'You Win!';
                     document.querySelector('#results-modal').classList.add('show');
                     return;
@@ -42,18 +41,14 @@ export default function gameLoop() {
                         const newCPUBoard = document.querySelector('.CPU-gameboard');
                         const newPlayerBoard = document.querySelector('.player-gameboard');
                         const CPUGameboard = document.querySelector('.CPU-gameboard > .gameboard');
-                        console.log(CPUGameboard);
                         const unhitSquares = Array.from(newPlayerBoard.querySelectorAll('.not-hit'));
-                        console.log(unhitSquares);
                         const randomSquare = unhitSquares[Math.floor(Math.random() * unhitSquares.length)];
-                        console.log(randomSquare);
                         players[0].board.recieveAttack([parseInt(randomSquare.dataset.x), parseInt(randomSquare.dataset.y)]);
                         removeBoard(newCPUBoard);
                         removeBoard(newPlayerBoard);
                         displayBoard(players[0], true);
                         displayBoard(players[1], false);
                         if (players[1].board.allSunk()) {
-                            console.log(`${players[0].playerName} Won`);
                             document.querySelector('.winner-text').textContent = 'You Win!';
                             document.querySelector('#results-modal').classList.add('show');
                             return

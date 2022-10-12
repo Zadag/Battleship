@@ -13,6 +13,5 @@ export default function formatShipsForGame() {
             orientation: ship[0].dataset.orientation
         })
     });
-    console.log(outputArray);
     return outputArray;
 }

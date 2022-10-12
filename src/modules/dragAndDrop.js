@@ -58,7 +58,6 @@ export default function dragAndDrop(playerType = 'player') {
             ship.addEventListener("mousedown", (e) => {
                 currentDrag.shipPos = e.target.dataset.square;
                 currentDrag.shipId = e.target.parentNode.id;
-                console.log(currentDrag)
             })
         });
     
@@ -67,7 +66,6 @@ export default function dragAndDrop(playerType = 'player') {
             square.addEventListener('dragenter', (e) => {
                 e.preventDefault();
                 const shipsBay = document.querySelector('.ships-bay');
-                console.log(`This is shipsBay ${shipsBay}`)
                 let rootX;
                 let rootY;
                 let rootEl;
@@ -161,7 +159,6 @@ export default function dragAndDrop(playerType = 'player') {
             square.addEventListener('drop', (e) => {
                 e.preventDefault();
                 let droppedShip = e.target;
-                console.log(droppedShip)
                 if (droppedShip.classList.contains('four-long')) {
                     while (document.querySelector('.ship.four-long').firstChild) {
                         document.querySelector('.ship.four-long').removeChild(document.querySelector('.ship.four-long').firstChild);
@@ -193,7 +190,6 @@ export default function dragAndDrop(playerType = 'player') {
             let board = document.querySelector('#board-grid');
             // This event fires whenever the dragged element leaves a child element
             board.addEventListener('dragleave', () => {
-                console.log('dragleave');
                 let draggingShipSquares = document.querySelectorAll(`.grid-square.${currentDrag.shipId}`);
                 draggingShipSquares.forEach(shipSquare => {
                     // shipSquare.classList.remove(currentDrag.shipId);
@@ -289,7 +285,6 @@ export default function dragAndDrop(playerType = 'player') {
     resetButton.addEventListener('click', resetShips);
     
     const rotateShips = () => {
-        console.log('rotating')
         let ships = document.querySelectorAll('.ship');
         let shipsBay = document.querySelector('.ships-bay');
         if (shipsBay.id === "ships-bay-vertical") {
@@ -298,7 +293,6 @@ export default function dragAndDrop(playerType = 'player') {
             shipsBay.id = 'ships-bay-vertical';
         }
         ships.forEach((ship) => {
-            console.log('rotate')
             ship.classList.toggle('vertical')
         })
     }

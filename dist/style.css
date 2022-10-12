@@ -257,6 +257,49 @@ table {
     margin-left: 15px;
 }
 
+#results-modal {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.winner-text {
+    font-size: 4rem;
+    color: rgb(210, 206, 206)
+}
+
+.play-again {
+    margin-top: 20px;
+    width: 25vw;
+    height: 10vw;
+    min-width: 200px;
+    min-height: 80px;
+    background-color: rgb(29, 27, 27);
+    color: rgb(210, 206, 206);
+    font-size: 2rem;
+    border: none;
+}
+
+.show {
+    visibility: visible !important;
+}
+
 @media (max-width: 800px) {
     #content {
         display: flex;

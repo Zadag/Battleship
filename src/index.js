@@ -4,7 +4,9 @@ import startScreen from './modules/startScreen';
 import dragAndDrop from './modules/dragAndDrop';
 import formatShipsForGame from './modules/formatShipsForGame';
 import clearContent from './modules/clearContent';
+import resultsModal from './modules/resultsModal';
 
+resultsModal();
 header();
 startScreen();
 dragAndDrop();

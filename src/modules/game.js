@@ -26,9 +26,11 @@ export default function gameLoop() {
                 removeBoard(cpuBoard);
                 removeBoard(playerBoard);
                 displayBoard(players[0], true);
-                displayBoard(players[1], false);
+                displayBoard(players[1], true);
                 if (players[1].board.allSunk()) {
                     console.log(`${players[0].playerName} Won`);
+                    document.querySelector('.winner-text').textContent = 'You Win!';
+                    document.querySelector('#results-modal').classList.add('show');
                     return;
                 }
                 addGameboardEvents(true);
@@ -49,9 +51,11 @@ export default function gameLoop() {
                         removeBoard(newCPUBoard);
                         removeBoard(newPlayerBoard);
                         displayBoard(players[0], true);
-                        displayBoard(players[1], false);
+                        displayBoard(players[1], true);
                         if (players[1].board.allSunk()) {
                             console.log(`${players[0].playerName} Won`);
+                            document.querySelector('.winner-text').textContent = 'You Win!';
+                            document.querySelector('#results-modal').classList.add('show');
                             return
                         }
                         addGameboardEvents(true);
@@ -76,7 +80,7 @@ export default function gameLoop() {
 
         players.push(player1, player2);
         displayBoard(player1, true);
-        displayBoard(player2, false);
+        displayBoard(player2, true);
         addGameboardEvents(true);
     };
 
